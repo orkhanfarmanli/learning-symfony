@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <table class="table text-center">
+        <tr>
+            <th class="active text-center text-primary">Id</th>
+            <th class="active text-center text-primary">Name</th>
+        </tr>
+
+        {% for category in categories %}
+            <tr>
+                <td>{{ category.id }}</td>
+                <td>{{ category.name }}</td>
+            </tr>
+        {% endfor %}
+    </table>
+{% endblock %}

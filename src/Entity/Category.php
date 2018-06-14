@@ -3,9 +3,10 @@ namespace App\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
+use Gedmo\Mapping\Annotation as Gedmo;
 
 /**
- * @ORM\Entity()
+ * @ORM\Entity(repositoryClass="App\Repository\CategoryRepository")
  * @ORM\Table(name="categories")
  */
 class Category
@@ -80,6 +81,33 @@ class Category
         return $this;
     }
 
+
+    /**
+    * @var string
+    *
+    * @Gedmo\Slug(fields={"name"})
+    *
+    * @ORM\Column(type="string", length=128, unique=true)
+    */
+    private $slug;
+    
+    /**
+     * @return string|null
+     */
+    public function getSlug() : ?string
+    {
+        return $this->slug;
+    }
+    
+    /**
+     * @param string $slug
+     */
+    public function setSlug(string $slug): void
+    {
+        $this->slug = $slug;
+    }
+    
+
     /**
      *
      * @return Job[]|ArrayCollection
@@ -151,5 +179,15 @@ class Category
         $this->affiliates->removeElement($affiliate);
 
         return $this;
+    }
+
+    /**
+     * @return Job[]|ArrayCollection
+     */
+    public function getActiveJobs()
+    {
+        return $this->jobs->filter(function (Job $job) {
+            return $job->getExpiresAt() > new \DateTime();
+        });
     }
 }

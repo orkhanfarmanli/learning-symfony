@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Create a Category</h1>
+    <form action="{{ path('categories.store') }}" method="POST">
+
+        <div class="form-group">
+            <label for="">Category Name</label>
+            <input type="text" class="form-control" name="name">
+        </div>
+
+        <button type="submit" class="btn btn-default">Submit</button>
+    </form>
+{% endblock %}

@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Create a Job</h1>
+    <form action="{{ path('job.store') }}">
+
+        <div class="form-group">
+            <label for="">Job Name</label>
+            <input type="text" class="form-control" name="name">
+        </div>
+
+        <div class="form-group">
+            <label for="">Job Type</label>
+            <input type="text" class="form-control">
+        </div>
+
+        <div class="form-group">
+            <label for="">Company Type</label>
+            <input type="text" class="form-control">
+        </div>
+
+    </form>
+{% endblock %}
